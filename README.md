@@ -1,1 +1,1 @@
-# diet-app-server
+# Diet App Server
