@@ -5,13 +5,15 @@ import { ConfigModule } from '@nestjs/config';
 import appConfig from './app.config.js';
 
 @Module({
-  imports: [ProductsModule, TranslationsModule,
+  imports: [
+    ProductsModule,
+    TranslationsModule,
     ConfigModule.forRoot({
       load: [appConfig],
       isGlobal: true,
-    })
+    }),
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

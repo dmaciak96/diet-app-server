@@ -1,10 +1,7 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Inject, Query } from '@nestjs/common';
 
 @Controller('products')
 export class ProductsController {
-
-    @Get()
-    findProduct(@Query('name') name: string) {
-        
-    }
+  @Get()
+  async findProduct(@Query('name') name: string) {}
 }

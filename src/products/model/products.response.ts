@@ -1,17 +1,17 @@
 export interface ProductsResponse {
-    products: ProductResponse[]
+  products: ProductResponse[];
 }
 
 export interface ProductResponse {
-    name: string,
-    description: string,
-    category: string,
-    foodNutrients: FoodNutrientsResponse[]
+  name: string;
+  description: string;
+  category: string;
+  foodNutrients: FoodNutrientsResponse[];
 }
 
 export interface FoodNutrientsResponse {
-    nutrientId: number,
-    nutrientName: string,
-    unitName: string,
-    value: number,
+  nutrientId: number;
+  nutrientName: string;
+  unitName: string;
+  value: number;
 }

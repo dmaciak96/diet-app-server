@@ -1,5 +1,5 @@
-import { registerAs } from "@nestjs/config";
-import z from "zod";
+import { registerAs } from '@nestjs/config';
+import z from 'zod';
 
 export const productsConfigSchema = z.object({
   baseUrl: z.url(),
@@ -11,4 +11,4 @@ export default registerAs('products', () =>
     baseUrl: process.env.PRODUCTS_API_BASE_URL,
     apiKey: process.env.PRODUCTS_API_KEY,
   }),
-)
+);

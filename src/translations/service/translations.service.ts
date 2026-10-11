@@ -1,12 +1,33 @@
-import { Inject, Injectable } from '@nestjs/common';
-import translationsConfig from '../config/translations.config.js';
-import type { ConfigType } from '@nestjs/config';
+import { Injectable } from '@nestjs/common';
+import {
+  TranslationsRequestDto,
+  TranslationsResponseDto,
+} from '../../common/dto/translations.dto.js';
+import { HttpClient, InjectHttpClient } from '@nestjs/http-client';
 
 @Injectable()
 export class TranslationsService {
-    
-    constructor(
-        @Inject(translationsConfig.KEY)
-        private readonly config: ConfigType<typeof translationsConfig>
-    ) {}
+  constructor(
+    @InjectHttpClient('translations')
+    private readonly translationsHttpClient: HttpClient,
+  ) {}
+
+  public async translateText(
+    translationsDto: TranslationsRequestDto,
+  ): Promise<TranslationsResponseDto> {
+    console.log(translationsDto);
+    const response =
+      await this.translationsHttpClient.post<TranslationsResponseDto>(
+        '/translate',
+        {
+          json: {
+            q: translationsDto.textToTranslate,
+            source: translationsDto.sourceLang,
+            target: translationsDto.targetLang,
+            format: translationsDto.format,
+          },
+        },
+      );
+    return response.data;
+  }
 }

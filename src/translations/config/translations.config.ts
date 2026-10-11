@@ -1,5 +1,5 @@
-import { registerAs } from "@nestjs/config";
-import z from "zod";
+import { registerAs } from '@nestjs/config';
+import z from 'zod';
 
 export const translationsConfigSchema = z.object({
   baseUrl: z.url(),

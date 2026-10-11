@@ -8,6 +8,6 @@ import productsConfig from './config/products.config.js';
 @Module({
   controllers: [ProductsController],
   providers: [ProductsService],
-  imports: [TranslationsModule, ConfigModule.forFeature(productsConfig)]
+  imports: [TranslationsModule, ConfigModule.forFeature(productsConfig)],
 })
 export class ProductsModule {}
