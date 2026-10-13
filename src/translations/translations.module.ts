@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import translationsConfig from './config/translations.config.js';
 import { HttpClientModule } from '@nestjs/http-client';
 import type { ConfigType } from '@nestjs/config';
+import { Temporal } from '@js-temporal/polyfill';
 
 @Module({
   providers: [TranslationsService],
@@ -16,6 +17,7 @@ import type { ConfigType } from '@nestjs/config';
       inject: [translationsConfig.KEY],
       useFactory: (config: ConfigType<typeof translationsConfig>) => ({
         baseUrl: config.baseUrl,
+        timeout: config.timeout as any,
       }),
     }),
   ],
