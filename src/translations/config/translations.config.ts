@@ -4,7 +4,7 @@ import z from 'zod';
 
 export const translationsConfigSchema = z.object({
   baseUrl: z.url(),
-  timeout: z.string()
+  timeout: z.string(),
 });
 
 export default registerAs('translations', () =>
