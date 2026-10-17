@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import productsConfig from '../config/products.config.js';
 import type { ConfigType } from '@nestjs/config';
 import { HttpClient, InjectHttpClient } from '@nestjs/http-client';
@@ -7,6 +7,8 @@ import { ProductsSearchRequest } from '../model/products-search.request.js';
 
 @Injectable()
 export class ProductsService {
+  private readonly logger = new Logger(ProductsService.name);
+
   constructor(
     @Inject(productsConfig.KEY)
     private readonly config: ConfigType<typeof productsConfig>,
@@ -24,12 +26,14 @@ export class ProductsService {
       5. Zapisz w Cache (klucz to query a wartość to response, TTL 1h)
       6. Zwróć obiekt
     */
+   this.logger.log("Sending products search request", {...request})
     const response = await this.productsHttpClient.post<ProductsSearchResponse>(
       '/v1/foods/search',
       {
         json: request,
       },
     );
+    this.logger.debug('Searching products finished', {status: response.status, body: response.data})
     return response.data;
   }
 }
