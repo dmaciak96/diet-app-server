@@ -15,7 +15,6 @@ export class TranslationsService {
   public async translateText(
     translationsDto: TranslationsRequestDto,
   ): Promise<TranslationsResponseDto> {
-    console.log(translationsDto);
     const response =
       await this.translationsHttpClient.post<TranslationsResponseDto>(
         '/translate',
